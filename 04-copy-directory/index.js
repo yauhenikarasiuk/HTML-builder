@@ -4,7 +4,7 @@ const copyPathName = path.resolve(__dirname, 'files-copy');
 const origPathName = path.resolve(__dirname, 'files');
 
 
-fs.rmdir(copyPathName, {recursive: true, force: true}, () => {
+fs.rm(copyPathName, {recursive: true, force: true}, () => {
   fs.mkdir(copyPathName, () => {
     fs.readdir(origPathName, (error, files) => {
       files.forEach(file => {
