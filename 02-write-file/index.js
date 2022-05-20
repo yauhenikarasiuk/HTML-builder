@@ -5,7 +5,7 @@ let fileData = '';
 fs.writeFile(path.join(__dirname, 'text.txt'), fileData, () => {});
 console.log('Please, write some text end press enter. If you want to exit type \'exit\'');
 stdin.on('data', (data) => {
-  if(data.toString() == 'exit\n' || data.toString() == 'exit\r\n'){
+  if(data.toString() == 'exit\n' || data.toString() == 'exit\r\n' || data.toString() == 'exit'){
     process.exit();
   } else {
     fileData += data.toString();
