@@ -2,16 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const destPath = path.resolve(__dirname, 'project-dist', 'bundle.css');
 const stylesPath = path.resolve(__dirname, 'styles');
-let bundleData = '';
+let bundleData = [];
 fs.readdir(stylesPath, (error, files) => {
-  files.forEach(file => {
+  files.filter(file => file.endsWith('.css')).forEach((file, index, arr) => {
     let filePath = path.resolve(stylesPath, file.toString());
-    const { ext } = path.parse(filePath);
-    if(ext == '.css'){
-      fs.readFile(filePath, (error, data) => {
-        bundleData += data.toString();
-        fs.writeFile(destPath, bundleData, ()=>{});
-      });
-    }
+    fs.readFile(filePath, (error, data) => {
+      bundleData[index] = data.toString();
+      if(bundleData.length == arr.length && !bundleData.includes(undefined)){
+        fs.writeFile(destPath, bundleData.join(''), ()=>{});
+      }
+    });
   });
 });
