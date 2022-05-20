@@ -31,7 +31,7 @@ fs.rm(distPath, {recursive: true, force: true}, () => {
         fs.readFile(filePath, (error, data) => {
           bundleData[index] = data.toString();
           if(bundleData.length == arr.length && !bundleData.includes(undefined)){
-            fs.writeFile(path.join(distPath, 'styles.css'), bundleData.join(''), ()=>{});
+            fs.writeFile(path.join(distPath, 'style.css'), bundleData.join(''), ()=>{});
           }
         });
       });
